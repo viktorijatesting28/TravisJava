@@ -1,23 +1,25 @@
 os: linux
 
-
 language: java
 services:
   - docker
 cache: bundler
 dist: bionic
 
-
 install: skip
 
 jobs:
   include:
-    - name: failing
-      script: true
+    - name: long-running-task
+      script:
+        - echo "Starting long-running task..."
+        - sleep 300  # 300 seconds = 5 minutes
+        - echo "Task completed!"
 
 after_success:
-  - echo done
+  - echo "done"
   - echo $TRAVIS_TEST_RESULT
+
 
   
 
