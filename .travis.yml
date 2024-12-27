@@ -13,13 +13,13 @@ jobs:
     - name: long-running-task
       script:
         - echo "Starting long-running task..."
-        - sleep 300  # 300 seconds = 5 minutes
+        - sleep 600  # 600 seconds = 10 minutes
         - echo "Task completed!"
 
 after_success:
   - echo "done"
   - echo $TRAVIS_TEST_RESULT
-  
+
 
 
   
