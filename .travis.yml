@@ -13,12 +13,16 @@ jobs:
     - name: long-running-task
       script:
         - echo "Starting long-running task..."
-        - sleep 2400  # 2400 seconds = 40 minutes
+        - for i in {1..35}; do
+            echo "Running... $((i * 60)) seconds elapsed";
+            sleep 60;
+          done
         - echo "Task completed!"
 
 after_success:
   - echo "done"
   - echo $TRAVIS_TEST_RESULT
+
 
 
 
