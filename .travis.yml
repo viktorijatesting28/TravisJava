@@ -1,31 +1,26 @@
 os: linux
 
+
 language: java
 services:
   - docker
-cache:
-  directories:
-    - $HOME/.m2   # Cache Maven dependencies (if using Maven)
-    - $HOME/.gradle # Cache Gradle dependencies (if using Gradle)
+cache: bundler
 dist: bionic
+
 
 install: skip
 
 jobs:
   include:
     - name: failing
-      script:
-        - echo "Running tests"
-        - ./gradlew test # Replace with `mvn test` if using Maven
+      script: true
 
 after_success:
-  - echo "Build succeeded"
+  - echo done
   - echo $TRAVIS_TEST_RESULT
-
 after_failure:
-  - echo "Build failed"
+  - echo failed
   - echo $TRAVIS_TEST_RESULT
-
   
   
 
