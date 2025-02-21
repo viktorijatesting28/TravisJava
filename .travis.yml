@@ -1,5 +1,6 @@
 os: linux
 
+
 language: java
 services:
   - docker
@@ -9,7 +10,7 @@ dist: bionic
 install: skip
 
 stages:
-  - test
+  - Tests
   - deploy
 
 jobs:
@@ -17,12 +18,16 @@ jobs:
     - name: failing
       script: true
 
-    - stage: test
-      script: ./test 1
+    - stage: Tests
+      name: "Unit Tests"
+      script: ./unit-tests
 
-    - script: ./test 2  # stage name not required, continues under `test`
+    - stage: Tests
+      name: "Integration Tests"
+      script: ./integration-tests
 
     - stage: deploy
+      name: "Deploy to GCP"
       script: ./deploy
 
 after_success:
